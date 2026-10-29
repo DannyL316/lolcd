@@ -1,0 +1,4 @@
+'use strict';
+const HASTE_SOURCES={cosmic:{name:'Cosmic Insight',haste:18},ionian:{name:'Ionian Boots of Lucidity',haste:10},crimson:{name:'Crimson Lucidity',haste:20}};
+function hasteSources(total){return ({0:[],10:['ionian'],18:['cosmic'],20:['crimson'],28:['cosmic','ionian'],38:['cosmic','crimson']})[total]||[]}
+function hasteAnnotation(total){const ids=hasteSources(total);if(!ids.length)return '';return `<span class="haste-sources" aria-label="${ids.map(id=>HASTE_SOURCES[id].name+' +'+HASTE_SOURCES[id].haste).join(' plus ')} equals ${total} summoner haste">${ids.map((id,i)=>`${i?'<span class="haste-plus">+</span>':''}<span class="haste-source"><img src="assets/${id}.png" alt="" title="${HASTE_SOURCES[id].name}"><span>${HASTE_SOURCES[id].name}<small>+${HASTE_SOURCES[id].haste} haste</small></span></span>`).join('')}</span>`}
